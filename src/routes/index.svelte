@@ -53,6 +53,7 @@
 	$: results = Array(numDice).fill(10);
 	$: numDice, (start = false);
 	$: difficulty, (start = false);
+	$: doubles, (start = false);
 
 	function handleKeydown(event) {
 		if (event.key === 'Enter') random();
@@ -74,7 +75,7 @@
 			<h2>Will You Succeed?</h2>
 		{:else if success >= difficulty}
 			<div class="flexcol">
-				<h2 class="succeded">Succeeded</h2>
+				<h2 class="succeded">Success!</h2>
 				<div class="flex">
 					<span class="small">Total successes: {success}</span>
 
@@ -82,7 +83,12 @@
 				</div>
 			</div>
 		{:else}
-			<h2 class="fail">Failed</h2>
+			<div class="flexcol">
+				<h2 class="fail">Failure...</h2>
+				<div class="flex">
+					<span class="small">Total successes: {success}</span>
+				</div>
+			</div>
 		{/if}
 	</div>
 	<div class="options">
@@ -158,17 +164,15 @@
 		padding-bottom: 20px;
 	}
 	.small {
-		font-size: 1em;
+		font-size: 1.25em;
 		padding: 0;
-	}
-	.extra {
-		font-size: 1.5em;
 	}
 	.successflex {
 		min-width: 250px;
 		min-height: 92px;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 	}
 	.dice {
 		padding: 8px;
