@@ -77,16 +77,24 @@
 			<div class="flexcol">
 				<h2 class="succeded">Success!</h2>
 				<div class="flex">
-					<span class="small">Total successes: {success}</span>
-
+					<span class="small">Total Successes: {success}</span>
 					<span class="small">Extra Successes: {success - difficulty}</span>
+				</div>
+			</div>
+		{:else if success === 0 && results.includes(1)}
+			<div class="flexcol">
+				<h2 class="fail">Botch!</h2>
+				<div class="flex">
+					<span class="small">Total Successes: {success}</span>
+					<span class="small">Missed by: {Math.abs(success - difficulty)}</span>
 				</div>
 			</div>
 		{:else}
 			<div class="flexcol">
 				<h2 class="fail">Failure...</h2>
 				<div class="flex">
-					<span class="small">Total successes: {success}</span>
+					<span class="small">Total Successes: {success}</span>
+					<span class="small">Missed by: {Math.abs(success - difficulty)}</span>
 				</div>
 			</div>
 		{/if}
