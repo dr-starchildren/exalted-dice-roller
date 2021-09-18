@@ -49,8 +49,17 @@
 	$: if (difficulty < 1) {
 		difficulty = 1;
 	}
+
+	$: results = Array(numDice).fill(10);
+	$: numDice, (start = false);
+	$: difficulty, (start = false);
+
+	function handleKeydown(event) {
+		if (event.key === 'Enter') random();
+	}
 </script>
 
+<svelte:window on:keydown={handleKeydown} />
 <div class="grid">
 	<h1>Welcome to Exalted Dice Roller</h1>
 	<div class="diceflex">
