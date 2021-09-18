@@ -1,7 +1,5 @@
 <script>
 	import Die from '$lib/die.svelte';
-	import { onMount } from 'svelte';
-
 	let doubles = [10];
 	let success = 0;
 	let difficulty = 1;
