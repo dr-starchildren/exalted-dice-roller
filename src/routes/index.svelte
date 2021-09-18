@@ -1,5 +1,7 @@
 <script>
 	import Die from '$lib/die.svelte';
+	import { fade } from 'svelte/transition';
+
 	let doubles = [10];
 	let success = 0;
 	let difficulty = 1;
@@ -8,13 +10,16 @@
 	let doubleOptions = [7, 8, 9, 10];
 	let start = false;
 	let noSort = false;
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	}
 
 	function random() {
 		start = true;
 		let temp = [];
 		let total = 0;
 		for (let i = 0; i < numDice; i++) {
-			let num = Math.floor(Math.random() * (10 - 1 + 1) + 1);
+			let num = getRandomInt(1, 10);
 			if (doubles.includes(num)) total = total + 2;
 			else if (num >= 7) total = total + 1;
 
@@ -43,8 +48,8 @@
 	$: if (numDice < 1) {
 		numDice = 1;
 	}
-	$: if (difficulty > 10) {
-		difficulty = 10;
+	$: if (difficulty > 30) {
+		difficulty = 30;
 	}
 	$: if (difficulty < 1) {
 		difficulty = 1;
@@ -62,10 +67,22 @@
 
 <svelte:window on:keydown={handleKeydown} />
 <div class="grid">
-	<h1>Welcome to Exalted Dice Roller</h1>
+	<h1>EXALTED</h1>
+	<h2>Dice Roller</h2>
+	{#each Array(30 - numDice) as d, index (index)}
+		<div
+			class="pileoffset"
+			style="--top:{getRandomInt(100, 200) + 'px'}; 
+			--left:{getRandomInt(175, 250) + 'px'};"
+			transition:fade
+		>
+			<Die height="50px" width="50px" />
+		</div>
+	{/each}
+
 	<div class="diceflex">
-		{#each results as r, i}
-			<div class="dice">
+		{#each results as r, index (index)}
+			<div class="dice" transition:fade>
 				<Die value={r} />
 			</div>
 		{/each}
@@ -83,7 +100,7 @@
 			</div>
 		{:else if success === 0 && results.includes(1)}
 			<div class="flexcol">
-				<h2 class="fail">Botch!</h2>
+				<h2 class="botch">BOTCH!</h2>
 				<div class="flex">
 					<span class="small">Total Successes: {success}</span>
 					<span class="small">Missed by: {Math.abs(success - difficulty)}</span>
@@ -134,14 +151,18 @@
 <style>
 	.grid {
 		display: grid;
-		grid-template-rows: 50px 1fr 0.25fr 0.15fr 0.25fr;
+		grid-template-rows: 35px 15px minmax(300px, 1fr) 0.25fr 0.15fr 0.25fr;
 		justify-content: center;
 		justify-items: center;
 		padding: 10px;
+		background: #f4e7d6;
+		max-width: 1400px;
+		opacity: 0.89;
+		margin: 0 auto;
 	}
 	h1 {
 		font-weight: bold;
-		padding-bottom: 20px;
+		font-family: 'Spectral';
 	}
 	h2 {
 		font-size: 2em;
@@ -198,8 +219,12 @@
 	.active {
 		background-color: gold;
 	}
-	.fail {
+	.botch {
 		color: red;
+		font-size: 3em;
+	}
+	.fail {
+		color: orangered;
 		font-size: 3em;
 	}
 	.succeded {
@@ -224,5 +249,15 @@
 	}
 	.cosmetics {
 		padding: 40px;
+	}
+	.pileoffset {
+		position: absolute;
+		top: var(--top);
+		left: var(--left);
+	}
+	@media screen and (max-width: 1400px) {
+		.pileoffset {
+			visibility: hidden;
+		}
 	}
 </style>

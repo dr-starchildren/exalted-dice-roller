@@ -23,6 +23,7 @@
   "dependencies": {
     "@fontsource/kaushan-script": "^4.5.0",
     "@fontsource/qwigley": "^4.5.0",
+    "@fontsource/spectral": "^4.5.0",
     "lodash": "^4.17.21"
   }
 }
