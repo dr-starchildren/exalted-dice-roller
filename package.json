@@ -24,6 +24,9 @@
     "@fontsource/kaushan-script": "^4.5.0",
     "@fontsource/qwigley": "^4.5.0",
     "@fontsource/spectral": "^4.5.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "pusher": "^5.0.0",
+    "pusher-js": "^7.0.3",
+    "socket.io": "^4.2.0"
   }
 }

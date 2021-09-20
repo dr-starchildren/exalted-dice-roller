@@ -83,10 +83,6 @@ select {
 	--font-smooth: Roboto;
 	--font-mono: monospace;
 	--pure-white: #ffffff;
-	--primary-color: hsl(22, 96%, 70%);
-	--secondary-color: rgb(250, 184, 146);
-	--tertiary-color: #edf0f8;
-	--accent-color: hsl(22, 96%, 70%);
 	--heading-color: rgba(5, 5, 5, 0.7);
 	--text-color: #444444;
 	--background-without-opacity: rgba(255, 255, 255, 0.7);
@@ -152,7 +148,7 @@ p {
 }
 
 a {
-	color: var(--accent-color);
+	color: var(--heading-color);
 	text-decoration: none;
 }
 
