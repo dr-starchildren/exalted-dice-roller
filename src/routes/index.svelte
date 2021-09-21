@@ -218,7 +218,7 @@
 			</label>
 			{#each messages as msg}
 				<span class="msgusername">{msg.username}</span>
-				<span class="msgresult">{msg.results}</span>
+				<span class="msgresult">Dice: {msg.results}</span>
 				<span class="msgsuccess">Successes: {msg.success}</span>
 			{/each}
 		{/if}
